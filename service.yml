@@ -1,0 +1,22 @@
+#PS D:\Dev\KubernetsDev\kubernetes-node-example> kubectl get service kubernetes-node-deployment -o=yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: kubernetes-node
+  name: kubernetes-node-deployment
+  namespace: default
+spec:
+  ports:
+  - nodePort: 31211
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    app: kubernetes-node
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost
